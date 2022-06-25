@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'welcome.js') }}"></script>   
+
+<script>
+    let favList = {{favList|tojson}} 
+</script>
+
+<body style="background-color:rgb(245, 245, 235);"></body>
+
+<div class = "container">
+    <div class = "row" >
+        <div class = "col-md-12 header">
+            New York City Bars and Clubs!
+        </div>
+    </div>
+    <div class = "row" >
+        <div class = "topPicks">
+            Top picks!
+        </div>            
+        
+    </div>
+    <div class = "row" >
+        <hr class="new1">
+    </div>
+    
+    <br>
+    
+    {% for place in favList %}
+    <div class = "row">
+        
+        <div class = "col-md-5 text-center favListPic">
+            <a href= /view/{{place.id}}>
+                <img src={{place.picture}} 
+                alt= "picture of {{place.name}}"
+                width = 90%>
+            </a> 
+        </div>
+        <div class = "col-md-4">
+            <div class ='favListName name'>{{place.name}}</div>
+            <div class = info >
+                <img src="https://images.squarespace-cdn.com/content/v1/56b043f059827ea2f14975ae/1477079186888-NZ7707JKB4NGY7HDUZA6/1+train+logo.png"
+                width = 10%>
+                {{place.closestSubway}}
+                <img src="https://www.pngitem.com/pimgs/m/487-4873359_free-walking-icon-png-walking-icon-png-transparent.png"
+                width = 6%>
+                {{place.walk}}
+            </div>
+            <div class = "info lowerInfo">
+                {{place.neighborhood}}
+            </div>
+            <div class = "info lowerInfo">
+                {{place.type}}
+            </div>
+        </div>
+    </div>
+    {% endfor %}  
+</div>
+
+{% endblock %}

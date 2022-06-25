@@ -1,0 +1,201 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'edit.js') }}"></script>  
+<script>
+    let current_id = {{current_id}}
+</script>
+
+<body></body>
+<div class = "container" >
+
+    <div>
+        You are currently in edit mode
+    </div>
+
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Name of place</div>
+            <input id="name" placeholder="Name" value = "{{place.name}}" class="form-control">
+            <div id="nameInvalid" class = "invalid">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Subway Station</div>
+            <select id="subwayStop" class="form-control">
+                <option default>{{place.closestSubway}}</option>
+                <option>125th st</option>
+                <option>116th st - Columbia University</option>
+                <option>Cathedral Pkwy (110 st)</option>
+                <option>103th st</option>
+                <option>96th st</option>
+                <option>86th st</option>
+                <option>79th st</option>
+                <option>72th st</option>
+                <option>66th st - Lincoln Center</option>
+                <option>59th st</option>
+                <option>50th st</option>
+                <option>42th st - Times Sq</option>
+                <option>34th st - Penn Station</option>
+                <option>28th st</option>
+                <option>23th st</option>
+                <option>18th st</option>
+                <option>14th st</option>
+                <option>Christopher St - Sheridan Sq</option>
+                <option>Houston st</option>
+                <option>Canal st</option>
+                <option>Franklin st</option>
+                <option>Chambers st</option>
+                <option>WTC Cortlandt</option>
+                <option>Rector st</option>
+                <option>South Ferry</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Distance from subway to place (mi)</div>
+            <input id="walk" placeholder="ex. 0.5" value = {{place.walk}} class="form-control">
+            <div id="walkInvalid" class = "invalid">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Neighborhood</div>
+            <input id="neighborhood" placeholder="neighborhood" value = "{{place.neighborhood}}" class="form-control">
+            <div id="neighborhoodInvalid" class = "invalid">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Type of place</div>
+            <select id="type" class="form-control">
+                <option defualt>{{place.type}}</option>
+                <option>bar</option>
+                <option>club</option>
+                <option>restaurants</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Address</div>
+            <input id="address" placeholder="'121 W 10th St, New York, NY 10011'" value = "{{place.address}}" class="form-control">
+            <div id="addressInvalid" class = "invalid">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Website</div>
+            <input type = 'url' id="website" placeholder="'https://www.happiesthournyc.com/reservations/'" value = "{{place.website}}" class="form-control">
+            <div id="websiteInvalid" class = "invalid">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Phone number</div>
+            <input type = 'tel' id="phone" placeholder="'(212) 243-2827'" value = "{{place.phone}}" class="form-control">
+            <div id="phoneInvalid" class = "invalid">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class = 'row'>
+        <div class="col-md-6">
+            <div>Picture of place</div>
+            <input type = 'url' id="picture" placeholder="'https://www...jpg'" value = {{place.picture}} class="form-control">
+            <div id="pictureInvalid" class = "invalid">
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class = 'row'>
+        <div class="col-md-1">Hours:</div>
+    </div>
+    <div class = 'row'>
+        <div class="col-md-2 hoursForm">
+            Monday
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="monday" value = "{{newHoursList['Monday']}}">
+            <div id="mondayInvalid" class = "invalid"></div>
+        </div>
+    </div>
+    <div class = 'row'>
+        <div class="col-md-2 hoursForm">
+            Tuesday
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="tuesday" value = "{{newHoursList['Tuesday']}}">
+            <div id="tuesdayInvalid" class = "invalid"></div>
+        </div>
+    </div>
+    <div class = 'row'>
+        <div class="col-md-2 hoursForm">
+            Wednesday
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="wednesday" value = "{{newHoursList['Wednesday']}}">
+            <div id="wednesdayInvalid" class = "invalid"></div>
+        </div>
+    </div>
+    <div class = 'row'>
+        <div class="col-md-2 hoursForm">
+            Thursday
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="thursday" value = "{{newHoursList['Thursday']}}">
+            <div id="thursdayInvalid" class = "invalid"></div>
+        </div>
+    </div>
+    <div class = 'row'>
+        <div class="col-md-2 hoursForm">
+            Friday
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="friday" value = "{{newHoursList['Friday']}}">
+            <div id="fridayInvalid" class = "invalid"></div>
+        </div>
+    </div>
+    <div class = 'row'>
+        <div class="col-md-2 hoursForm">
+            Saturday
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="saturday" value = "{{newHoursList['Saturday']}}">
+            <div id="saturdayInvalid" class = "invalid"></div>
+        </div>
+    </div>
+    <div class = 'row'>
+        <div class="col-md-2 hoursForm">
+            Sunday
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="sunday" value = "{{newHoursList['Sunday']}}">
+            <div id="sundayInvalid" class = "invalid"></div>
+        </div>
+    </div>
+       
+    <br>
+    <button id="typeButton" class = "btn btn-outline-success btn-default my-2 my-sm-0">submit</button>
+    <button onclick="alertButton()" class = "btn btn-outline-success btn-default my-2 my-sm-0">discard</button>
+</div>
+
+
+
+{% endblock %}

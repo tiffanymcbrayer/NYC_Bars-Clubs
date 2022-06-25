@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'view.js') }}"></script>  
+
+<body style="background-color:rgb(245, 245, 235);"></body>
+
+<b>
+    <div class = "container">
+
+        <div class = "row">
+            <div class = "col-md-12 favListPic">
+                <div class = viewName>{{place.name}}</div>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "col-md-1 one">
+                <img src="https://images.squarespace-cdn.com/content/v1/56b043f059827ea2f14975ae/1477079186888-NZ7707JKB4NGY7HDUZA6/1+train+logo.png"
+                class="float-right"
+                alt= "one train icon"
+                width = 35%>
+            </div>
+
+            <div class = "col-md-4 info">
+                <div>
+                    {{place.closestSubway}}
+                    <img src="https://www.pngitem.com/pimgs/m/487-4873359_free-walking-icon-png-walking-icon-png-transparent.png"
+                    alt= "person walking icon"
+                    width = 5%>
+                    {{place.walk}}
+                </div>
+                <div>
+                    {{place.neighborhood}}
+                </div>
+                <div>
+                    {{place.type}}
+                </div>
+            </div>
+
+            <div class  = "col-md-1">
+
+            </div>
+            <div class  = "col-md-1 tag">
+                Tags:
+            </div>
+            <div class  = "col-md-4">
+                <button id="typeButton" class = "btn btn-outline-success btn-default my-2 my-sm-0">{{place.type}}</button>
+                <button id="neighborhoodButton" class = "btn btn-outline-success btn-default my-2 my-sm-0">{{place.neighborhood}}</button>
+                <button id="subwayButton" class = "btn btn-outline-success btn-default my-2 my-sm-0">{{place.closestSubway}}</button>
+                <!-- <a href="/search_results/">Continue</a> -->
+            </div>
+        </div>
+
+        <div class = "row">   
+            <div class = "col-md-5 text-center favListPic">
+                <img src={{place.picture}} 
+                alt= "picture of {{place.name}}"
+                width = 90%>
+            </div>
+            <div class  = "col-md-2">
+
+            </div>
+            <div class  = "col-md-4">
+                <div class = "address">
+                    {{place.address}}
+                </div>
+                <div class = hours>
+                    Hours:
+                    {% for day in place.hoursOperation %}
+                        <div>{{day}}</div>
+                    {% endfor %}
+                </div>
+                <div class = "website">
+                    <a href={{place.website}}>Website</a>
+                </div> 
+                <div class = "website">
+                    <a href="tel:" + {{place.phone}}>{{place.phone}}</a>
+                </div>
+                <div class = 'edit'>
+                    <a href=/edit/{{place.id}}>edit</a>
+                </div>
+                
+            </div>
+
+            
+            
+        </div>
+
+ 
+
+</b>
+
+
+
+{% endblock %}
